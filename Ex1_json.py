@@ -94,11 +94,12 @@ print(library)
 
 choice = "0"
 
-while choice != "3":
-    print("\n--- BOOK INVENTORY ---")
-    print("1. View All Books.")
-    print("2. Search for Book.")
-    print("3. Exit.")
+while choice != "4":
+    print("--- BOOK INVENTORY ---")
+    print("1. View All Books")
+    print("2. Search for Book")
+    print("3. Calculate Total Inventory Value")
+    print("4. Exit")
 
     choice = input("Enter your choice: ")
     
@@ -121,6 +122,14 @@ while choice != "3":
             print("Book not found.")
 
     elif choice == "3":
+        total_value = 0 
+
+        for book in library:
+            total_value += book["price"] * book["stock"]
+
+        print(f"Total Inventory Value: £{total_value:.2f}")
+
+    elif choice == "4":
         print("Goodbye!")
 
     else:
