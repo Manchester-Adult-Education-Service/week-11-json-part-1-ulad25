@@ -51,7 +51,10 @@ import json  # We need this tool to read the external file
 #
 # Write your code below:
 
+with open("books.json", "r") as file:  
+    library = json.load(file)
 
+print(library)
 
 
 # -------------------------------------------
@@ -89,7 +92,71 @@ import json  # We need this tool to read the external file
 # Write your code below:
 # NOTE: This loop will become the "home" for all your future code!
 
+choice = "0"
 
+while choice != "5":
+    print("--- BOOK INVENTORY ---")
+    print("1. View All Books")
+    print("2. Search for Book")
+    print("3. Calculate Total Inventory Value")
+    print("4. Add New Book")
+    print("5. Exit")
+
+    choice = input("Enter your choice: ")
+    
+    if choice == "1":
+        print("--- ALL BOOKS ---")
+        for book in library:
+            print(f"Title: {book['title']} | Author: {book['author']} | Stock: {book['stock']}")
+        print()
+
+    elif choice == "2":
+        search_term = input("Enter book title to find: ").lower()
+        found = False
+
+        for book in library:
+            if search_term in book['title'].lower():
+                print(f"Title: {book['title']} | Author: {book['author']} | Stock: {book['stock']}")
+                found = True
+
+        if not found:
+            print("Book not found.")
+
+    elif choice == "3":
+        total_value = 0 
+
+        for book in library:
+            total_value += book["price"] * book["stock"]
+
+        print(f"Total Inventory Value: £{total_value:.2f}")
+
+    elif choice == "4":
+        title = input("Enter book title: ")
+        author = input("Enter author name: ")
+        genre = input("Enter genre: ")
+        price = float(input("Enter price: "))
+        stock = int(input("Enter stock quantity: "))
+
+        new_book = {
+            "title": title,
+            "author": author,
+            "genre": genre,
+            "price": price,
+            "stock": stock
+        }
+
+        library.append(new_book)
+
+        with open('books.json', 'w') as file:
+            json.dump(library, file, indent=4)
+
+        print(f"Book '{title}' added successfully!")    
+
+    elif choice == "5":
+        print("Goodbye!")
+
+    else:
+        print("Invalid choice.")
 
 
 # -------------------------------------------
