@@ -92,7 +92,21 @@ print(library)
 # Write your code below:
 # NOTE: This loop will become the "home" for all your future code!
 
+choice = "0"
 
+while choice != "3":
+    print("\n--- BOOK INVENTORY ---")
+    print("1. View All Books.")
+    print("2. Search for Book.")
+    print("3. Exit.")
+
+    choice = input("Enter your choice: ")
+
+    if choice == "3":
+        print("Goodbye!")
+
+    else:
+        print("Invalid choice.")
 
 
 # -------------------------------------------
