@@ -101,8 +101,14 @@ while choice != "3":
     print("3. Exit.")
 
     choice = input("Enter your choice: ")
+    
+    if choice == "1":
+        print("\n--- ALL BOOKS ---")
+        for book in library:
+            print(f"Title: {book['title']} | Author: {book['author']} | Stock: {book['stock']}")
+        print()
 
-    if choice == "3":
+    elif choice == "3":
         print("Goodbye!")
 
     else:
