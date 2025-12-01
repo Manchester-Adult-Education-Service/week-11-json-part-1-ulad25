@@ -94,17 +94,18 @@ print(library)
 
 choice = "0"
 
-while choice != "4":
+while choice != "5":
     print("--- BOOK INVENTORY ---")
     print("1. View All Books")
     print("2. Search for Book")
     print("3. Calculate Total Inventory Value")
-    print("4. Exit")
+    print("4. Add New Book")
+    print("5. Exit")
 
     choice = input("Enter your choice: ")
     
     if choice == "1":
-        print("\n--- ALL BOOKS ---")
+        print("--- ALL BOOKS ---")
         for book in library:
             print(f"Title: {book['title']} | Author: {book['author']} | Stock: {book['stock']}")
         print()
@@ -130,6 +131,28 @@ while choice != "4":
         print(f"Total Inventory Value: £{total_value:.2f}")
 
     elif choice == "4":
+        title = input("Enter book title: ")
+        author = input("Enter author name: ")
+        genre = input("Enter genre: ")
+        price = float(input("Enter price: "))
+        stock = int(input("Enter stock quantity: "))
+
+        new_book = {
+            "title": title,
+            "author": author,
+            "genre": genre,
+            "price": price,
+            "stock": stock
+        }
+
+        library.append(new_book)
+
+        with open('books.json', 'w') as file:
+            json.dump(library, file, indent=4)
+
+        print(f"Book '{title}' added successfully!")    
+
+    elif choice == "5":
         print("Goodbye!")
 
     else:
